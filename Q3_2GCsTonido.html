@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function newFunction() {
+            let myDialog = document.getElementbyId('ConfirmationDialog');
+            myDialog.showModal();
+
+        }
+
+        function yesclicked() {
+            let myDialog = document.getElementbyId('ConfirmationDialog');
+            myDialog.hideModal();
+
+            alert("Action Confirmed");
+        }
+
+        function noclicked() {
+            let myDialog = document.getElementbyId('ConfirmationDialog');
+            myDialog.hideModal();
+        }
+
+    </script>
+</head>
+
+<body>
+    <dialog id="ConfirmationDialog">
+        <h2>Dialog Title</h2>
+        <p>Are you sure you want to proceed?</p>
+        <div>
+            <button onclick="yesclicked">Yes</button>
+            <button onclick="noclicked">No</button>
+        </div>
+    </dialog>
+    <form method="post" action="submit" onsubmit="newFunction()">
+        <title>Club Form</title>
+        <fieldset>
+            <label for="studentid"> StudentID: </label><br>
+            <input type="number" id="studentid" name="studentid"><br><br>
+            <label for="name"> Full Name: </label> <br>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="bday">Birthday: </label><br>
+            <input type="date" id="bday" name="bday"><br><br>
+            <label for="email">Email address: </label><br>
+            <input type="email" id="email" name="email"><br><br>
+        </fieldset>
+
+        <fieldset>
+            <label for="mobile">Mobile phone:</label><br>
+            <input type="text" id="mobile" name="mobile"><br><br>
+            <label for="grade">Grade Level:</label><br>
+            <select name="levels" id="grade">
+                <option value="seven">Grade 7</option>
+                <option value="eight">Grade 8</option>
+                <option value="nine">Grade 9</option>
+                <option value="ten">Grade 10</option>
+                <option value="eleven">Grade 11</option>
+                <option value="twelve">Grade 12</option>
+            </select> <br><br>
+
+            <label for="living">Intern/Extern</label><br>
+            <input type="radio" id="intern" name="living" value="Intern">
+            <label for="intern">Intern</label><br>
+            <input type="radio" id="extern" name="living" value="Extern">
+            <label for="extern">Extern</label><br><br>
+
+            <label for="club">Preferred Organization / Club</label><br>
+            <select name="org" id="club">
+                <option value="sudoku">Sapienara</option>
+                <option value="sing">Himig Agham</option>
+                <option value="dance">Sagala</option>
+                <option value="theater">Sightlines</option>
+                <option value="writing">Elipsis</option>
+            </select><br><br>
+        </fieldset>
+
+        <label for="join">Why do you want to join?</label><br>
+        <textarea></textarea><br><br>
+
+        <button type="submit">Submit</button><br>
+        <button type="reset">Reset</button>
+
+    </form>
+
+</body>
+
+</html>
