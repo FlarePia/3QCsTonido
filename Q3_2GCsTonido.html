@@ -4,12 +4,29 @@
 <head>
     <style>
         input:focus {
-            background-color: lightblue;
+            background-color: rgb(255, 164, 90);
         }
 
         body {
-            background-color: cornsilk;
+            background-color: rgb(255, 157, 121);
+            text-align: center;
         }
+
+        fieldset {
+           
+            position: relative;
+            margin-top: 25px;
+            width: 500px;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+
+        form {
+            width: 500px;
+            margin:auto;
+        }
+         
     </style>
     <script>
         function blurring(e) {
@@ -26,7 +43,7 @@
             let confirmed = confirm("Do you want to reset the form?");
             if (confirmed) alert("Form reset");
 
-            let fields = ["studentid", "name", "bday", "email", "mobile", "grade", "intern", "extern", "club", "join"];
+            let fields = ["studentid", "name", "bday", "email", "mobile", "grade", "living", "club", "join"];
             for (let field of fields) {
                 document.getElementById(field).value = "";
             }
@@ -39,7 +56,11 @@
 <body>
     <form id="answer" method="post" action="submit" onsubmit="return handleSubmit(this) "
         onreset="return handleReset(this)">
-        <title>Club Form</title>
+
+        <div class = "main" style = width:300px; heigh: 1000px>
+        <fieldset>
+        <br><h1>Club Application</h1><br>
+        </fieldset>
         <fieldset>
             <label for="studentid"> StudentID: </label><br>
             <input type="number" id="studentid" name="studentid" required onblur="blurring(this)"><br><br>
@@ -52,7 +73,7 @@
         </fieldset>
 
         <fieldset>
-            <label for="mobile">Mobile phone:</label><br>
+            <br><label for="mobile">Mobile phone:</label><br>
             <input type="text" id="mobile" name="mobile" required onblur="blurring(this)"><br><br>
             <label for="grade">Grade Level:</label><br>
             <select name="levels" id="grade" required>
@@ -80,12 +101,15 @@
             </select><br><br>
         </fieldset>
 
-        <label for="join" required onblur="blurring(this)">Why do you want to join?</label><br>
+        <fieldset>
+        <br><label for="join" required onblur="blurring(this)">Why do you want to join?</label><br>
         <textarea></textarea><br><br>
 
-        <button type="submit">Submit</button><br>
+        <button type="submit">Submit</button>
         <button type="reset">Reset</button>
+        </fieldset>
 
+        </div>
     </form>
 </body>
 
