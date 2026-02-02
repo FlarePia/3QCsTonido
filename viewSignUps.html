@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: cornsilk;
+            font-family: Papyrus, sans-serif;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            background-color: lightpink
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        button {
+            font-family: Papyrus, sans-serif;
+            color: black;
+            background-color: lightpink;
+        }
+    </style>
+    <script>
+        function loadSignUps() {
+            let tableBody = document.getElementById("table-body");
+            let studentData = JSON.parse(localStorage.getItem("signUps")) || [];
+            console.log(studentData);
+
+            studentData.forEach(student => {
+
+                let row = document.createElement("tr");
+                row.classList.add("club-row");
+
+                row.classList.add(student.club); // Add class based on club
+
+                for (let key in student) {
+                    let cell = document.createElement("td");
+                    cell.textContent = student[key];
+                    row.appendChild(cell);
+                }
+
+                tableBody.appendChild(row);
+            });
+
+            document.getElementById("rowcounter").innerText = studentData.length;
+        }
+
+        function filterByClub() {
+            let selectedClub = document.querySelector("select").value;
+            let tableBody = document.getElementById("table-body");
+            let rows = tableBody.getElementsByTagName("tr");
+
+            for (let row of rows) {
+                if (selectedClub === "all" || row.classList.contains(selectedClub)) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            }
+            let rowCounter = document.getElementById("rowcounter");
+            let count = 0;
+            for (let row of rows) {
+                if (row.style.display !== "none") {
+                    count++;
+                }
+            }
+            rowCounter.textContent = count;
+            document.getElementById("rowcounter").innerText = count;
+            let noSignupsMessage = document.getElementById("no-signups-message");
+            if (count === 0) {
+                noSignupsMessage.style.display = "block";
+            } else {
+                noSignupsMessage.style.display = "none";
+            }
+
+            let signupsTable = document.getElementById("signups-table");
+            if (count === 0) {
+                signupsTable.style.display = "none";
+            } else {
+                signupsTable.style.display = "table";
+            }
+        }
+
+        window.onload = loadSignUps;
+    </script>
+</head>
+
+<h1><b>Show List of Students Who Signed Up</b></h1>
+<h3><b>by KS Tonido</b></h3>
+<button onclick="window.location.href='Q3_2GCsTonido.html'">Back to Signup</button>
+<p>Select your club:</p>
+<select onchange="filterByClub() ">
+    <option value="" selected disabled>--Please choose an option--</option>
+    <option value="sudoku">Sapienara</option>
+    <option value="sing">Himig Agham</option>
+    <option value="dance">Sagala</option>
+    <option value="theater">Sightlines</option>
+    <option value="writing">Elipsis</option>
+    <option value="all">All Clubs</option>
+</select>
+<p>Total Signup: <span id="rowcounter">0</span></p>
+<table id="signups-table" style="display: visible;">
+    <thead>
+        <tr>
+            <td>Student ID</td>
+            <th>Full Name</th>
+            <th>Birthday</th>
+            <th>Email Address</th>
+            <th>Mobile Phone</th>
+            <th>Grade Level</th>
+            <th>Intern/Extern</th>
+            <th>Preferred Organization / Club</th>
+            <th>Reason for Joining</th>
+        </tr>
+    </thead>
+    <tbody id="table-body">
+        <!-- Data rows will be inserted here dynamically -->
+
+
+    </tbody>
+</table>
+
+<p id="no-signups-message" style="display: none;"> No Sign Ups for the selected club.</p>
+
+</html>
